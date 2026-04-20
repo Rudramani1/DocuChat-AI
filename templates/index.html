@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DocuChat - RAG Assistant</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <i class='bx bx-brain'></i>
+                <span>DocuChat</span>
+            </div>
+            
+            <div class="upload-section">
+                <h3>Document Setup</h3>
+                <p>Upload a PDF, TXT, or DOCX file to start chatting.</p>
+                <label for="file-upload" class="upload-btn" id="upload-label">
+                    <i class='bx bx-cloud-upload'></i>
+                    <span>Select File</span>
+                </label>
+                <input type="file" id="file-upload" accept=".pdf,.txt,.docx" hidden>
+                <div id="file-name" class="file-name"></div>
+                <button id="process-btn" class="primary-btn" disabled>
+                    <i class='bx bx-cog'></i> Process Document
+                </button>
+                <div id="upload-status" class="status-msg"></div>
+            </div>
+            
+            <div class="info-section">
+                <div class="info-item">
+                    <i class='bx bx-server'></i>
+                    <span>Local Embeddings (MiniLM)</span>
+                </div>
+                <div class="info-item">
+                    <i class='bx bx-lock-alt'></i>
+                    <span>Local LLM (Ollama)</span>
+                </div>
+                <div class="info-item">
+                    <i class='bx bx-memory-card'></i>
+                    <span>In-Memory FAISS Index</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Chat Area -->
+        <main class="chat-area">
+            <header class="chat-header">
+                <h2>Chat with your Document</h2>
+                <div class="status-badge" id="doc-status">
+                    <span class="dot red"></span> No document loaded
+                </div>
+            </header>
+            
+            <div class="chat-messages" id="chat-messages">
+                <div class="message system-message">
+                    <div class="avatar"><i class='bx bx-bot'></i></div>
+                    <div class="content">
+                        <p>Hello! I'm your local document assistant. Please upload a document on the left to begin.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chat-input-container">
+                <form id="chat-form">
+                    <input type="text" id="chat-input" placeholder="Ask a question about your document..." disabled autocomplete="off">
+                    <button type="submit" id="send-btn" disabled>
+                        <i class='bx bx-send'></i>
+                    </button>
+                </form>
+            </div>
+        </main>
+    </div>
+    
+    <script src="/static/script.js"></script>
+</body>
+</html>
